@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --partition=pascalnodes-medium
+#SBATCH --job-name="3xR47H-T-ext1"
+#SBATCH --error="3xR47H-T-ext1.err"
+#SBATCH --output="3xR47H-T-ext1.out"
+#SBATCH --ntasks=1
+#SBATCH --gres=gpu:1
+#SBATCH --time=48:00:00
+#SBATCH --mem-per-cpu=1024
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=ragreer@uab.edu
+
+module purge
+module load DefaultModules
+module load Amber/18-fosscuda-2018a-AmberTools-18-patchlevel-10-8
+module load cuda11.3/toolkit/11.3.0
+
+pmemd.cuda -O -i ext1.in -p 3xR47H-T-SolvI.prmtop -c 3xR47H-T-md.rst -o ext1.out -r 3xR47H-T-ext1.rst -x 3xR47H-T-ext1.mdcrd -inf 3xR47H-T-ext1.mdinfo
