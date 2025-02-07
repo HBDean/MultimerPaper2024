@@ -1,0 +1,8 @@
+source leaprc.protein.ff14SB					
+source leaprc.water.tip3p						
+complex = loadpdb CV-T.pdb					
+setbox complex centers							
+check complex								
+saveamberparm complex CV-T.prmtop CV-T.inpcrd	
+savepdb complex CV-T_new.pdb				
+quit
