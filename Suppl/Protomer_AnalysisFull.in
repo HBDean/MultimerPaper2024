@@ -1,0 +1,79 @@
+##### Trajectory Building #####
+# Input files for analysis
+parm CV-P.prmtop
+trajin CV-P.binpos 1 25000
+
+##### Basic Analyses #####
+# Summed fluctuation of each residue overall
+rms first @CA out Output/TREM2-CV-P_1st.rmsd @CA
+atomicfluct @CA \
+  out Output/TREM2-CV-P.rmsf byres \
+  start 5001
+
+# Shows dynamic correlation of each residue centered on both molecules
+matrix correl @CA \
+  out Output/TREM2-CV-P.DynCor byres \
+  start 5001
+run
+
+
+# Summed fluctuation of each residue in molecule A
+rms first :1-109@CA out Output/TREM2-CV-P_A_1st.rmsd :1-109@CA
+atomicfluct :1-109@CA \
+  out Output/TREM2-CV-P-A.rmsf byres \
+  start 5001
+
+# Shows dynamic correlation of each residue centered on molecule A
+matrix correl @CA \
+  out Output/TREM2-CV-P-A.DynCor byres \
+  start 5001
+run
+
+
+# Summed fluctuation of each residue in molecule B
+rms first :110-218@CA out Output/TREM2-CV-P_D_1st.rmsd :110-218@CA
+atomicfluct :110-218@CA \
+  out Output/TREM2-CV-P-D.rmsf byres \
+  start 5001
+
+# Shows dynamic correlation of each residue centered on molecule B
+matrix correl @CA \
+  out Output/TREM2-CV-P-D.DynCor byres \
+  start 5001
+run
+
+# Shows avg distance between any two residues
+matrix @CA \
+  out Output/TREM2-CV-P.Dist byres \
+  start 5001
+run
+
+#Distance between TREM2 Chains
+distance :47,48,49,55,56,57,59 :126,129,130,178,179,180 out Output/Pro-A-D.dist
+run
+
+distance :7,8,9,10,11,56,57,58,76,78,79,80,81,109 :110,111,112,113,124,125,126,127,128,129,176,178,179,180,181,211 out Output/Tri-A-D.dist 
+run
+
+distance :1,2,3,4,15,16,17,18,19,20,67,69,70,71,72,102 :116,117,118,119,120,165,166,167,185,187,188,189,190,218  out Output/Tri-D-A.dist 
+run
+
+# Outputs all hydrogen bonds that appear averaged by atom over time (default limits: 135deg by 3Angstr)
+hbond HB :1-218 \
+  out Output/TREM2-CV-P_All.hbond \
+  avgout Output/TREM2-CV-P_Avg.hbond \
+  series uuseries Output/TREM2-CV-P_byTime.hbond \
+  printatomnum nointramol
+run
+
+# Creates a summary of fraction of time spent in each structure & a matrix of structure over time for each residue 
+secstruct \
+  out Output/TREM2-CV-P.StrMat \
+  sumout Output/TREM2-CV-P.SecStr
+run
+
+# Sasa
+
+# Generate RMSD between every 2-frame comparison in the trajectory
+# rms2d out Output/TREM2-CV-P.RMSMat
+

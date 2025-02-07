@@ -1,0 +1,26 @@
+# Trajectory Building
+# Input files for analysis in order
+
+parm CV-T.prmtop
+trajin CV-T.binpos
+
+# RMSD comparison to backbone in the first frame to fix translation & rotation
+rms first :1-109@CA out Output/CV-T_A_1st.rmsd :1-109@CA time 0.01
+rms first :110-218@CA out Output/CV-T_B_1st.rmsd :110-218@CA time 0.01
+rms first :219-327@CA out Output/CV-T_C_1st.rmsd :219-327@CA time 0.01
+rms first :1-327@CA out Output/CV-T_1st.rmsd :1-327@CA time 0.01
+
+createcrd Traj
+run
+
+#Distance between TREM2 Chains
+
+crdaction Traj distance \
+   :7,8,9,10,11,56,57,58,76,78,79,80,81,109 :110,111,112,113,124,125,126,127,128,129,176,178,179,180,181,211 out Output/A-B.dist \
+
+crdaction Traj distance \
+   :1,2,3,4,15,17,18,19,20,67,69,70,71,72,102 :225,226,227,228,229,274,275,276,294,296,297,298 out Output/A-C.dist \
+
+crdaction Traj distance \
+   :116,117,118,119,120,165,166,167,185,187,188,189 :220,221,222,233,235,236,237,238,285,287,288,289,290,320 out Output/B-C.dist \
+run

@@ -1,0 +1,97 @@
+##### Trajectory Building #####
+# Input files for analysis
+parm CV-PS-T.prmtop
+trajin CV-PS-T-md.binpos 1 25000
+
+##### Basic Analyses #####
+# Summed fluctuation of each residue overall
+rms first @CA out Output/TREM2-CV-PS-T_1st.rmsd @CA
+atomicfluct @CA \
+  out Output/TREM2-CV-PS-T.rmsf byres \
+  start 5001
+
+# Shows dynamic correlation of each residue centered on both molecules
+matrix correl @CA \
+  out Output/TREM2-CV-PS-T.DynCor byres \
+  start 5001
+run
+
+
+# Summed fluctuation of each residue in molecule A
+rms first :1-109@CA out Output/TREM2-CV-PS-T_A_1st.rmsd :1-109@CA
+atomicfluct :1-109@CA \
+  out Output/TREM2-CV-PS-T-A.rmsf byres \
+  start 5001
+
+# Shows dynamic correlation of each residue centered on molecule A
+matrix correl @CA \
+  out Output/TREM2-CV-PS-T-A.DynCor byres \
+  start 5001
+run
+
+
+# Summed fluctuation of each residue in molecule B
+rms first :110-218@CA out Output/TREM2-CV-PS-T_B_1st.rmsd :110-218@CA
+atomicfluct :110-218@CA \
+  out Output/TREM2-CV-PS-T-B.rmsf byres \
+  start 5001
+
+# Shows dynamic correlation of each residue centered on molecule B
+matrix correl @CA \
+  out Output/TREM2-CV-PS-T-B.DynCor byres \
+  start 5001
+run
+
+
+# Summed fluctuation of each residue in molecule C
+rms first :219-327@CA out Output/TREM2-CV-PS-T_C_1st.rmsd :219-327@CA
+atomicfluct :219-327@CA \
+  out Output/TREM2-CV-PS-T-C.rmsf byres \
+  start 5001
+
+# Shows dynamic correlation of each residue centered on molecule C
+matrix correl @CA \
+  out Output/TREM2-CV-PS-T-C.DynCor byres \
+  start 5001
+run
+
+# Shows avg distance between any two residues
+matrix @CA \
+  out Output/TREM2-CV-PS-T.Dist byres \
+  start 5001
+run
+
+#Distance between TREM2 Chains
+distance :7,8,9,10,11,56,57,58,76,78,79,80,81,109 :110,111,112,113,124,125,126,127,128,129,176,178,179,180,181,211 out Output/A-B.dist 
+
+distance :1,2,3,4,15,17,18,19,20,67,69,70,71,72,102 :225,226,227,228,229,274,275,276,294,296,297,298 out Output/A-C.dist 
+
+distance :116,117,118,119,120,165,166,167,185,187,188,189 :220,221,222,233,235,236,237,238,285,287,288,289,290,320 out Output/B-C.dist
+run
+
+distance :7,8,9,10,11,56,58,76,78,79 :111,112,113,124,126,127,128,129,176,178,179,180,181,211 out Output/Rory-A-B.dist \
+
+distance :2,3,4,15,17,18,19,20,67,69,70,71,72,102 :225,226,227,228,229,274,276,294,296,297 out Output/Rory-A-C.dist \
+
+distance :116,117,118,119,120,165,167,185,187,188 :220,221,222,233,235,236,237,238,285,287,288,289,290,320 out Output/Rory-B-C.dist \
+run
+
+# Outputs all hydrogen bonds that appear averaged by atom over time (default limits: 135deg by 3Angstr)
+hbond HB \
+  out Output/TREM2-CV-PS-T_All.hbond \
+  avgout Output/TREM2-CV-PS-T_Avg.hbond \
+  series uuseries Output/TREM2-CV-PS-T_byTime.hbond \
+  printatomnum nointramol
+run
+
+# Creates a summary of fraction of time spent in each structure & a matrix of structure over time for each residue 
+secstruct \
+  out Output/TREM2-CV-PS-T.StrMat \
+  sumout Output/TREM2-CV-PS-T.SecStr
+run
+
+# Sasa
+
+# Generate RMSD between every 2-frame comparison in the trajectory
+# rms2d out Output/TREM2-CV-PS-T.RMSMat
+
