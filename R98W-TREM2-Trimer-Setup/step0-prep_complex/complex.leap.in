@@ -1,0 +1,8 @@
+source leaprc.protein.ff14SB					
+source leaprc.water.tip3p						
+complex = loadpdb 3xR98W-T.pdb					
+setbox complex centers							
+check complex								
+saveamberparm complex 3xR98W-T.prmtop 3xR98W-T.inpcrd	
+savepdb complex 3xR98W-T_new.pdb				
+quit
