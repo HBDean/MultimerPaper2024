@@ -1,0 +1,17 @@
+Minimization of solvent water (constant volume) with protein, VDA and ion fixed at 1000, NO shake
+ &cntrl
+  imin = 1, maxcyc = 1000,
+  ncyc = 1000, dx0 = 0.0005,
+  ntf = 1, ntb = 1, ntc = 1,
+  cut = 10.0, nsnb = 20,
+  ntr = 1,
+ &end
+Group input for restrained protein
+10.0
+RES 1 327
+END
+Group input for restrained ions
+10.0
+RES 328 498
+END
+END
