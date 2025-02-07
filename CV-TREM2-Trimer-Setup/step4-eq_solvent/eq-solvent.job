@@ -1,0 +1,14 @@
+#!/bin/bash
+#SBATCH --partition=short
+#SBATCH --job-name="CV-T-Solv-EQ"
+#SBATCH --error="CV-T-Solv-EQ.err"
+#SBATCH --output="CV-T-Solv-EQ.out"
+#SBATCH --ntasks=4
+#SBATCH --time 08:00:00
+#SBATCH --mem-per-cpu=1024
+#SBATCH --mail-type=FAIL
+#SBATCH --mail-user=ragreer@uab.edu
+
+module load Amber/18-fosscuda-2018a-AmberTools-18-patchlevel-10-8
+
+sander -O -i eq-solvent.in -p CV-T-SolvI.prmtop -c CV-T-min-SolvI.rst -ref CV-T-min-SolvI.rst -o eq-solvent.out -r CV-T-eq-SolvI.rst -x CV-T-eq-SolvI.mdcrd -inf CV-T-eq-SolvI.mdinfo
