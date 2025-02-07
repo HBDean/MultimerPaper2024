@@ -1,0 +1,28 @@
+#!/bin/bash
+#SBATCH --partition=long
+#
+# Name your job to make it easier for you to track
+#
+#SBATCH --job-name=CV-T-MD
+#
+# Set your error and output files
+#
+#SBATCH --error=CV-T-MD.err
+#SBATCH --output=CV-T-MD.out
+#SBATCH --ntasks=16
+#
+# Even on 32 cpus the scheduler could need the maximum available 150 hours
+#
+#SBATCH --time=150:00:00
+#SBATCH --mem-per-cpu=1024
+#
+# Set your email address and request notification when the job starts, completes, and/or fails
+#
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=hbdean@uab.edu
+
+module load OpenMPI/1.10.2-GCC-4.9.3-2.25
+module load Amber
+
+mpirun --mca mpi_cuda_support 0 -np $SLURM_NTASKS  pmemd.MPI -O -i md.in -p CV-T-SolvI.prmtop -c CV-T-eq-300K.rst -o md.out -r CV-T-md.rst -x CV-T-md.mdcrd -inf CV-T-md.mdinfo
+

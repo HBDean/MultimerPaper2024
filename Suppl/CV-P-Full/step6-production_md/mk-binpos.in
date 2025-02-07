@@ -1,0 +1,6 @@
+trajin CV-P-md.mdcrd
+trajin CV-P-ext1.mdcrd
+unwrap
+trajout CV-P.binpos binpos nobox
+strip :WAT,Na+,Cl-
+

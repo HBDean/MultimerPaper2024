@@ -1,0 +1,7 @@
+Input file for protein-protein mm-pbsa
+&general
+  interval = 10,
+/
+&pb
+  istrng = 0.15, inp = 1, cavity_surften = 0.00542, cavity_offset = 0.92
+/

@@ -1,0 +1,25 @@
+#!/bin/bash
+#SBATCH --partition=medium
+#SBATCH --job-name="CV-P-heating"
+#SBATCH --error="CV-P-heating.err"
+#SBATCH --output="CV-P-heating.out"
+#SBATCH --ntasks=8
+#SBATCH --time=24:00:00
+#SBATCH --mem-per-cpu=1024
+#SBATCH --mail-type=FAIL
+#SBATCH --mail-user=hbdean@uab.edu
+
+module load Amber/18-fosscuda-2018a-AmberTools-18-patchlevel-10-8
+
+sander -O -i eq-50K.in -p CV-P-SolvI.prmtop -c CV-P-eq-SolvI.rst -o eq-50K.out -r CV-P-eq-50K.rst -x CV-P-eq-50K.mdcrd -inf CV-P-eq-50K.mdinfo
+
+sander -O -i eq-100K.in -p CV-P-SolvI.prmtop -c CV-P-eq-50K.rst -o eq-100K.out -r CV-P-eq-100K.rst -x CV-P-eq-100K.mdcrd -inf CV-P-eq-100K.mdinfo
+
+sander -O -i eq-150K.in -p CV-P-SolvI.prmtop -c CV-P-eq-100K.rst -o eq-150K.out -r CV-P-eq-150K.rst -x CV-P-eq-150K.mdcrd -inf CV-P-eq-150K.mdinfo
+
+sander -O -i eq-200K.in -p CV-P-SolvI.prmtop -c CV-P-eq-150K.rst -o eq-200K.out -r CV-P-eq-200K.rst -x CV-P-eq-200K.mdcrd -inf CV-P-eq-200K.mdinfo
+
+sander -O -i eq-250K.in -p CV-P-SolvI.prmtop -c CV-P-eq-200K.rst -o eq-250K.out -r CV-P-eq-250K.rst -x CV-P-eq-250K.mdcrd -inf CV-P-eq-250K.mdinfo
+
+sander -O -i eq-300K.in -p CV-P-SolvI.prmtop -c CV-P-eq-250K.rst -o eq-300K.out -r CV-P-eq-300K.rst -x CV-P-eq-300K.mdcrd -inf CV-P-eq-300K.mdinfo
+

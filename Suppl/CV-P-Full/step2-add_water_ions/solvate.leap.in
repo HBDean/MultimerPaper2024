@@ -1,0 +1,9 @@
+source leaprc.protein.ff14SB
+source leaprc.water.tip3p
+CV-P = loadpdb CV-P-min.pdb
+solvateBox CV-P TIP3PBOX 20.0 
+addions2 CV-P Cl- 16
+addionsrand CV-P Cl- 64 Na+ 64
+check CV-P
+saveamberparm CV-P CV-P-SolvI.prmtop CV-P-SolvI.inpcrd 
+quit

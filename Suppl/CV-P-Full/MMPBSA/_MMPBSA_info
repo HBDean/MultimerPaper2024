@@ -1,0 +1,127 @@
+# You can alter the variables below to change what info is printed out
+INPUT['debug_printlevel'] = 0
+INPUT['verbose'] = 1
+INPUT['csv_format'] = 1
+INPUT['dec_verbose'] = 0
+#
+# MODIFY NOTHING BELOW HERE, OR GET WHAT YOU DESERVE
+INPUT['closureorder'] = 1
+INPUT['keep_files'] = 1
+INPUT['linit'] = 1000
+INPUT['mthick'] = 40.0
+INPUT['probe'] = 1.4
+INPUT['entropy'] = 0
+INPUT['solvbox'] = '-1,-1,-1'
+INPUT['istrng'] = 0.15
+INPUT['nmstartframe'] = 1
+INPUT['qm_theory'] = ''
+INPUT['nfocus'] = 2
+INPUT['idecomp'] = 0
+INPUT['qmcharge_com'] = 0
+INPUT['sander_apbs'] = 0
+INPUT['qm_residues'] = ''
+INPUT['closure'] = 'kh'
+INPUT['use_sander'] = 0
+INPUT['nminterval'] = 1
+INPUT['nmode_istrng'] = 0.0
+INPUT['rismrun'] = False
+INPUT['nmoderun'] = False
+INPUT['prbrad'] = 1.4
+INPUT['netcdf'] = ''
+INPUT['qmcut'] = 9999.0
+INPUT['cavity_offset'] = 0.92
+INPUT['receptor_mask'] = ':1-109'
+INPUT['frcopt'] = 0
+INPUT['thermo'] = 'std'
+INPUT['scale'] = 0.5
+INPUT['mutant_only'] = 0
+INPUT['poretype'] = 1
+INPUT['radiopt'] = 1
+INPUT['rismrun_std'] = False
+INPUT['tolerance'] = 1e-05
+INPUT['saltcon'] = 0.0
+INPUT['npbverb'] = 0
+INPUT['print_res'] = 'all'
+INPUT['cutnb'] = 0.0
+INPUT['drms'] = 0.001
+INPUT['full_traj'] = 0
+INPUT['strip_mask'] = ':WAT,Cl*,CIO,Cs+,IB,K*,Li+,MG*,Na+,Rb+,CS,RB,NA,F,CL'
+INPUT['solvopt'] = 2
+INPUT['cavity_surften'] = 0.00542
+INPUT['ipb'] = 2
+INPUT['bcopt'] = 5
+INPUT['solvcut'] = 14.0
+INPUT['eneopt'] = 2
+INPUT['nmendframe'] = 1000000
+INPUT['qmcharge_lig'] = 0
+INPUT['pbrun'] = True
+INPUT['qmcharge_rec'] = 0
+INPUT['search_path'] = 0
+INPUT['memoptzero'] = 0
+INPUT['molsurf'] = 0
+INPUT['grdspc'] = 0.5
+INPUT['mctrdz'] = 0.0
+INPUT['temp'] = 298.15
+INPUT['polardecomp'] = 0
+INPUT['rism_verbose'] = 0
+INPUT['msoffset'] = 0.0
+INPUT['emem'] = 1.0
+INPUT['inp'] = 1
+INPUT['exdi'] = 80.0
+INPUT['dielc'] = 1.0
+INPUT['gbrun'] = False
+INPUT['nmode_igb'] = 1
+INPUT['rismrun_gf'] = False
+INPUT['ligand_mask'] = ':110-218'
+INPUT['endframe'] = 9999999
+INPUT['ng'] = '-1,-1,-1'
+INPUT['maxarcdot'] = 1500
+INPUT['igb'] = 5
+INPUT['memopt'] = 0
+INPUT['fillratio'] = 4.0
+INPUT['buffer'] = 14.0
+INPUT['surfoff'] = 0.0
+INPUT['alarun'] = False
+INPUT['surften'] = 0.0072
+INPUT['maxcyc'] = 10000
+INPUT['ifqnt'] = 0
+INPUT['interval'] = 10
+INPUT['sasopt'] = 0
+INPUT['cutfd'] = 5.0
+INPUT['decomprun'] = False
+INPUT['startframe'] = 1
+INPUT['indi'] = 1.0
+FILES.clean = False
+FILES.complex_prmtop = 'complex.prmtop'
+FILES.infilehelp = False
+FILES.input_file = 'mmpbsa.in'
+FILES.ligand_mdcrd = None
+FILES.ligand_prmtop = 'ligand.prmtop'
+FILES.make_mdins = False
+FILES.mdcrd = ['CV-P.binpos']
+FILES.mutant_complex_prmtop = None
+FILES.mutant_ligand_prmtop = None
+FILES.mutant_receptor_prmtop = None
+FILES.prefix = '_MMPBSA_'
+FILES.receptor_mdcrd = None
+FILES.receptor_prmtop = 'receptor.prmtop'
+FILES.solvated_ligand_prmtop = None
+FILES.solvated_prmtop = None
+FILES.solvated_receptor_prmtop = None
+FILES.use_mdins = False
+FILES.xvvfile = '/share/apps/rc/software/Amber/18-fosscuda-2018a-AmberTools-18-patchlevel-10-8/dat/mmpbsa/spc.xvv'
+size = 1
+numframes = 3884
+numframes_nmode = 0
+mut_str = 'None'
+using_chamber = False
+|Input file:
+|--------------------------------------------------------------
+|Input file for protein-protein mm-pbsa
+|&general
+|  interval = 10,
+|/
+|&pb
+|  istrng = 0.15, inp = 1, cavity_surften = 0.00542, cavity_offset = 0.92
+|/
+|--------------------------------------------------------------
