@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --partition=pascalnodes-medium
+#SBATCH --job-name="CV-T-md"
+#SBATCH --error="CV-T-md.err"
+#SBATCH --output="CV-T-md.out"
+#SBATCH --ntasks=1
+#SBATCH --gres=gpu:1
+#SBATCH --time=48:00:00
+#SBATCH --mem-per-cpu=1024
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=ragreer@uab.edu
+
+module purge
+module load DefaultModules
+module load Amber/18-fosscuda-2018a-AmberTools-18-patchlevel-10-8
+module load cuda11.3/toolkit/11.3.0
+
+pmemd.cuda -O -i md.in -p CV-T-SolvI.prmtop -c CV-T-eq-300K.rst -o md.out -r CV-T-md.rst -x CV-T-md.mdcrd -inf CV-T-md.mdinfo
