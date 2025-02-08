@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --partition=long
+#SBATCH --job-name="Decomp"
+#SBATCH --error="Decomp.err"
+#SBATCH --output="Decomp.out"
+#SBATCH --ntasks=1
+#SBATCH --time=150:00:00
+#SBATCH --mem-per-cpu=10024
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=ragreer@uab.edu
+
+#module purge
+#module load DefaultModules
+module load Amber/18-fosscuda-2018a-AmberTools-18-patchlevel-10-8
+
+#ante-MMPBSA.py -p ../CV-T-SolvI.prmtop -c ../CV-T.prmtop -r ../BC.prmtop -l ../A.prmtop -m :110-327 -s :WAT,Na+,Cl-
+
+MMPBSA.py -O -i Decomp.in -o MMPBSA.dat -cp ../../Enthalpy-Trajectories/complex.prmtop -rp ../../Enthalpy-Trajectories/receptor.prmtop -lp ../../Enthalpy-Trajectories/ligand.prmtop -y ../../Enthalpy-Trajectories/complex.binpos -yr ../../Enthalpy-Trajectories/receptor.binpos -yl ../../Enthalpy-Trajectories/ligand.binpos -eo MMPBSA_byframe.csv -do DECOMP_MMPBSA.dat -deo DECOMP_byframe.csv

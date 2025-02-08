@@ -1,0 +1,3 @@
+trajin complex.binpos
+trajout receptor.binpos
+strip :1-109

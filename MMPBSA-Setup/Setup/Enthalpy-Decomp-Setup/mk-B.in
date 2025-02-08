@@ -1,0 +1,3 @@
+trajin complex.binpos
+trajout ligand.binpos
+strip :1-109,219-327

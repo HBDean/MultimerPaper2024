@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH --partition=long
+#SBATCH --job-name="Entropy-01"
+#SBATCH --error="Entropy-01.err"
+#SBATCH --output="Entropy-01.out"
+#SBATCH --ntasks=1
+#SBATCH --time=150:00:00
+#SBATCH --mem-per-cpu=10024
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=ragreer@uab.edu
+
+#module purge
+#module load DefaultModules
+module load Amber/18-fosscuda-2018a-AmberTools-18-patchlevel-10-8
+
+MMPBSA.py -O -i Entropy.in -o Entropy-01.dat -cp ../../Entropy-Trajectories/complex.prmtop -rp ../../Entropy-Trajectories/receptor.prmtop -lp ../../Entropy-Trajectories/ligand.prmtop -y ../../Entropy-Trajectories/complex.binpos -yr ../../Entropy-Trajectories/receptor.binpos -yl ../../Entropy-Trajectories/ligand.binpos -eo Entropy-01.csv

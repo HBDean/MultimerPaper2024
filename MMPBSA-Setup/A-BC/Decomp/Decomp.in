@@ -1,0 +1,9 @@
+Input file for protein-protein mm-pbsa
+&general
+ startframe=25000, endframe=50000, interval=15,
+/
+&pb
+ istrng = 0.15, inp = 1, cavity_surften = 0.00542, cavity_offset = 0.92, radiopt=0,
+/
+&decomp
+ idecomp=1, dec_verbose=1,

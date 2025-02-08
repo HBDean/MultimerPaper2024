@@ -1,0 +1,7 @@
+Input file for protein-protein mm-pbsa
+&general
+  interval = 15, startframe = 25000, endframe = 50000,
+/
+&nmode
+  nmode_igb = 1, nminterval = 10, nmode_istrng = 0.15,
+/
